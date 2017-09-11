@@ -46,4 +46,6 @@ class AutorArtigo(models.Model):
     autor = models.ForeignKey(Autor, related_name='Autor', null=True, blank=False)
     artigo = models.ForeignKey(ArtigoCientifico, related_name='ArtigoCientifico', null=True, blank=False)
     
+    def __str__(self):
+        return 'Autor:' + self.autor.nome +';'+ 'Artigo:' + self.artigo.titulo + '.'
 # Create your models here.
