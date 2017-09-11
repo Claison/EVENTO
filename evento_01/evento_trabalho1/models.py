@@ -17,7 +17,6 @@ class PessoaJuridica (Pessoa):
 class Autor (Pessoa):
     curriculo = models.CharField(max_length=128)
     artigos = models.CharField(max_length=128, null=True)
-    pai = models.CharField(max_length=128, null=True)
 
 class Evento (models.Model):
     nome = models.CharField(max_length=128)
@@ -27,7 +26,7 @@ class Evento (models.Model):
     palavrasChave = models.CharField(max_length=128)
     logotipo = models.CharField(max_length=128)
     palavrasChave = models.CharField(max_length=128)
-    realizador = models.ForeignKey(PessoaFisica, related_name='realizadores', null=True, blank=False)
+    realizador = models.ForeignKey(Pessoa, related_name='realizadores', null=True, blank=False)
     cidade = models.CharField(max_length=50)
     uf = models.CharField(max_length=2)
     endereco = models.CharField(max_length=250)
@@ -41,5 +40,8 @@ class ArtigoCientifico(models.Model):
     titulo = models.CharField(max_length=128)
     evento = models.ForeignKey(EventoCientifico, related_name='evento', null=True, blank=False)
 
+class AutorArtigo(models.Model):
+    autor = models.ForeignKey(Autor, related_name='Autor', null=True, blank=False)
+    artigo = models.ForeignKey(ArtigoCientifico, related_name='ArtigoCientifico', null=True, blank=False)
 
 # Create your models here.
