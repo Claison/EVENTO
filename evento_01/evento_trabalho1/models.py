@@ -31,7 +31,8 @@ class Evento (models.Model):
     uf = models.CharField(max_length=2)
     endereco = models.CharField(max_length=250)
     cep = models.CharField(max_length=8)
-
+    def __str__(self):
+        return self.nome
 class EventoCientifico(Evento):
     issn = models.CharField(max_length=9)
 
@@ -39,9 +40,10 @@ class EventoCientifico(Evento):
 class ArtigoCientifico(models.Model):
     titulo = models.CharField(max_length=128)
     evento = models.ForeignKey(EventoCientifico, related_name='evento', null=True, blank=False)
-
+    def __str__(self):
+        return self.titulo
 class AutorArtigo(models.Model):
     autor = models.ForeignKey(Autor, related_name='Autor', null=True, blank=False)
     artigo = models.ForeignKey(ArtigoCientifico, related_name='ArtigoCientifico', null=True, blank=False)
-
+    
 # Create your models here.
